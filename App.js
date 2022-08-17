@@ -13,6 +13,7 @@ export default function App() {
       ...currentGoals,
       { text: enterText, id: Math.random().toString() },
     ]);
+    endAddGoalHandler();
     // setEnterText("");
   };
   const deleteGoalItem = (id) => {
@@ -20,12 +21,12 @@ export default function App() {
       return currentGoals.filter((goal) => goal.id !== id);
     });
   };
-  function startAddGoalHandler() {
+  const startAddGoalHandler = () => {
     setModalIsVisible(true);
-  }
-  function endAddGoalHandler() {
+  };
+  const endAddGoalHandler = () => {
     setModalIsVisible(false);
-  }
+  };
   return (
     <>
       <StatusBar style="light" />

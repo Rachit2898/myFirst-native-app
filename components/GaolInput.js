@@ -1,11 +1,10 @@
 import {
   StyleSheet,
-  Text,
+  Modal,
+  Image,
   View,
   Button,
   TextInput,
-  ScrollView,
-  FlatList,
 } from "react-native";
 import { useState } from "react";
 
@@ -19,53 +18,61 @@ function GaolInput(props) {
     setEnterText("");
   };
   return (
-    <View style={styles.inputContainer}>
-      <TextInput
-        style={styles.textInput}
-        placeholder="Your Course Goal!"
-        value={enterText}
-        onChangeText={handleEnterText}
-      />
-      <Button title="Add Goal" onPress={handleClick} />
-    </View>
+    <Modal visible={props.visible} animationType="slide">
+      <View style={styles.inputContainer}>
+        <Image
+          style={styles.image}
+          source={require("../assets/images/goal.png")}
+        />
+        <TextInput
+          style={styles.textInput}
+          placeholder="Your Course Goal!"
+          value={enterText}
+          onChangeText={handleEnterText}
+        />
+        <View style={styles.buttonContainer}>
+          <View style={styles.button}>
+            <Button title="Cancel" onPress={props.onCancel} color="#f31282" />
+          </View>
+          <View style={styles.button}>
+            <Button title="Add Goal" onPress={handleClick} />
+          </View>
+        </View>
+      </View>
+    </Modal>
   );
 }
 
 export default GaolInput;
 
 const styles = StyleSheet.create({
-  appContainer: {
-    flex: 1,
-    paddingTop: 50,
-    paddingHorizontal: 16,
-  },
   inputContainer: {
     flex: 1,
-    flexDirection: "row",
-    justifyContent: "space-between",
+    justifyContent: "center",
     alignItems: "center",
-    marginBottom: 15,
-    borderBottomWidth: 1,
-    borderBottomColor: "#cccccc",
+    padding: 16,
+    backgroundColor: "#311b6b",
+  },
+  image: {
+    width: 100,
+    height: 100,
+    margin: 20,
   },
   textInput: {
     borderWidth: 1,
-    borderColor: "#cccccc",
-    width: "70%",
-    marginRight: 8,
-    padding: 8,
-  },
-  goalsContainer: {
-    flex: 6,
-  },
-  goalItems: {
-    margin: 8,
+    borderColor: "#e4d0ff",
+    backgroundColor: "#e4d0ff",
+    color: "#120438",
     borderRadius: 6,
-    padding: 8,
-    backgroundColor: "#5e0acc",
-    color: "white",
+    width: "100%",
+    padding: 16,
   },
-  goalText: {
-    color: "white",
+  buttonContainer: {
+    marginTop: 16,
+    flexDirection: "row",
+  },
+  button: {
+    width: 100,
+    marginHorizontal: 8,
   },
 });
