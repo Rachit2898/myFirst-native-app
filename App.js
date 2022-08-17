@@ -3,10 +3,12 @@ import { StatusBar } from "expo-status-bar";
 import { StyleSheet, View, Button, FlatList } from "react-native";
 import GoalItem from "./components/GoalItem";
 import GaolInput from "./components/GaolInput";
+import MyPics from "./components/MyPics";
 
 export default function App() {
   const [courseGoals, setCourseGoals] = useState([]);
   const [modalIsVisible, setModalIsVisible] = useState(false);
+  const [picsVisible, setPicsVisible] = useState(false);
   const handeClicks = (enterText) => {
     // setCourseGoals((currentGoals) => [...currentGoals, enterText]);
     setCourseGoals((currentGoals) => [
@@ -27,6 +29,9 @@ export default function App() {
   const endAddGoalHandler = () => {
     setModalIsVisible(false);
   };
+  const startMyPicsHandler = () => {
+    setPicsVisible(true);
+  };
   return (
     <>
       <StatusBar style="light" />
@@ -36,11 +41,13 @@ export default function App() {
           color="#a065ec"
           onPress={startAddGoalHandler}
         />
+        <Button title="My Pics" color="#1E90FF" onPress={startMyPicsHandler} />
         <GaolInput
           handleClicks={handeClicks}
           visible={modalIsVisible}
           onCancel={endAddGoalHandler}
         />
+        <MyPics visible={picsVisible} />
         <View style={styles.goalsContainer}>
           {/* <ScrollView>
           {courseGoals.map((goal) => (
